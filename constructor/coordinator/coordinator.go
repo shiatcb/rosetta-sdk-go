@@ -470,6 +470,7 @@ func (c *Coordinator) process( // nolint:gocognit
 	ctx context.Context,
 	returnFunds bool,
 ) (time.Duration, error) {
+	log.Println("Shi Cheng: into rosetta-sdk-go process func")
 	if !c.helper.HeadBlockExists(ctx) {
 		// We will sleep until at least one block has been synced.
 		// Many of the storage-based commands require a synced block
@@ -486,6 +487,7 @@ func (c *Coordinator) process( // nolint:gocognit
 
 	// Attempt to find a Job to process.
 	j, err := c.findJob(ctx, dbTx, returnFunds)
+	log.Println("Shi Cheng: find a job to execute")
 	if errors.Is(err, ErrNoAvailableJobs) {
 		log.Println("waiting for available jobs...")
 
